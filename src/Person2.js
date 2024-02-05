@@ -2,6 +2,7 @@
 import React from 'react';
 import { useState } from 'react';
 
+// let inputs, setInputs;
 
 function extraDetails(details){alert("Extra details: " + details)};
 
@@ -79,6 +80,16 @@ function telephone(props){return <tr>
     <td>{props.telephone}</td>
     </tr>};
 
+// // Workout how to capture the entirety of a form: 
+// function doInput(event, inputs){
+//     if(event.target.name != undefined){
+//         let newData = {...inputs};
+//         newData[event.target.name] = event.target.value;
+//         setInputs(newData);
+//     }
+//     // alert(event.target.name) // This is targeting the name attribute
+//     // e=>{setInputs({...inputs,name:e.target.value});}
+// };
 
 export default function(props){
 
@@ -87,7 +98,29 @@ export default function(props){
 
     // let [age, setAge] = useState();
 
-    let [inputs, setInputs] = useState({});
+    let test1 = {
+        name: "frank",
+        age: 123,
+        gender: "F",
+        telephone: '999'
+    };
+    let [inputs, setInputs] = useState(test1);
+
+    // let [inputs, setInputs] = useState({});
+    // [inputs, setInputs] = useState({});
+
+    // Workout how to capture the entirety of a form: 
+    function doInput(event){
+    if(event.target.name != undefined){
+        // event.preventDefault();
+        let newData = {...inputs};
+        newData[event.target.name] = event.target.value;
+        setInputs(newData);
+    }
+    // alert(event.target.name) // This is targeting the name attribute
+    // e=>{setInputs({...inputs,name:e.target.value});}
+    };
+
 
     return (
         <div>
@@ -100,36 +133,48 @@ export default function(props){
             {getJob(props.test, props)}
 
             {/* You can use this to display further questions if a user selects a particular dropdown choice */}
-            
+
             <h1>Person Details ({counter}): {title}</h1>
-            <button onClick={e=>setCounter(counter++)}/>
+            <button onClick={e=>setCounter(counter++)}>Click Me!</button>
             
             <h3>Name:{inputs.name}</h3>
             <h3>Age:{inputs.age}</h3>
             <h3>Gender:{inputs.gender}</h3>
             <h3>Telephone:{inputs.telephone}</h3>
 
-            <table>
+            <table onInput={e=>doInput(e)}>
 
                 <tbody>
                     {/* The code below could be used to decide whether or not a value should be displayed depending on whether a user has input a value: */}
                     {/* {props.personname ? name(props):''} */}
 
-                    {name(props)}
-                    {/* <input value={title} onInput={e=>{setTitle(e.target.value);}}/> */}
-                    <input value={props.name} onInput={e=>{setInputs({...inputs,name:e.target.value});}}/>
+                    <tr>
+                        {name(props)}
+                        {/* <input value={title} onInput={e=>{setTitle(e.target.value);}}/> */}
+                        {/* <input value={props.name} onInput={e=>{setInputs({...inputs,name:e.target.value});}}/> */}
+                        <input value={props.name} name ="name"/>
+                        {/* <input value={props.name} onInput={e=>doInput(e)} name ="name"/> */}
 
-                    {age(props)}
+                    </tr>
                     
-                    <input value={props.age} onInput={e=>{setInputs({...inputs,age:e.target.value});}}/>
+                    <tr>
+                        {age(props)}
+                            
+                        <input name = "age" value={props.age} onInput={e=>{setInputs({...inputs,age:e.target.value});}}/>
 
+                    </tr>
+  
+                    <tr>
+                        
+                        {gender(props)}
+                        <input name = "gender" value={props.gender} onInput={e=>{setInputs({...inputs, gender:e.target.value});}}/>
+                    </tr>
 
-                    {/* The following is for when we take in a name: */}
-                    {gender(props)}
-                    <input value={props.gender} onInput={e=>{setInputs({...inputs, gender:e.target.value});}}/>
-
-                    {telephone(props)}
-                    <input value={props.telephone} onInput={e=>{setInputs({...inputs, telephone:e.target.value});}}/>
+                    <tr>
+                        {telephone(props)}
+                        <input name = "telephone" value={props.telephone} onInput={e=>{setInputs({...inputs, telephone:e.target.value});}}/>
+                    </tr>
+                    
 
                     {/* List code hold: */}
                     {/* {list(props.list)} */}
