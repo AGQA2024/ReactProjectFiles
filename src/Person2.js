@@ -14,6 +14,20 @@ let jobs = {
     "designer": (props)=>{return <h3>designer: {props.type}</h3>}
 };
 
+function list(data){
+    if (data != undefined){
+        data = data.split(",");
+    
+        return data.map(item=>{
+            return item > 'b' ? <li>{item}</li> : <li>****{item}</li>
+            }
+        )
+    }   
+    else
+        return '';
+};
+
+
 let getJob = (key, props)=>{
     return typeof jobs[key]=='function' ? jobs[key](props) : jobs[key];
 };
@@ -67,6 +81,7 @@ export default function(props){
                 {age(props)}
                 {gender(props)}
                 {telephone(props)}
+                {list(props.list)}
             </tbody>
         
         </table>

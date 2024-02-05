@@ -2,18 +2,31 @@ import logo from './logo.svg';
 import './App.css';
 import Person2 from './Person2.js';
 
+// function list(data){
+//   return data.map(item=>{
+//     return item > 'b' ? <li>{item}</li> : <li>****{item}</li>
+//   }
+//   )
+// }
+// Added in the array to be referred to as data
+
 function App() {
   return (
     <div className="App">
       <header className="App-header">
 
-        {<h1>[1,2,3]</h1>}  
+        {/* {<h1>[1,2,3]</h1>}   */}
 
         <ol>
-          {['a', 'b', 'c'].map(item=><li>{item}</li>)} 
-          {/* We can encapsulate contents in order to hide it */}
+          {/* {list(['a', 'b', 'c', 'd', 'e'])} */}
         </ol>
+
+        <ul>
+          {/* {list(['1', '2', '3'])} */}
+        </ul>
         
+        {/* <Person2 /> */}
+
         {/* <Person2 test/> */}
 
         {/* <Person2 test="XYZ"/>    */}
@@ -28,7 +41,7 @@ function App() {
         {/* <Person2 test="designer" type="arty"/> */}
         {/* <Person2 test="programmer"/> */}
       
-        <Person2 test="ninja" colour="purple"/>
+        <Person2 test="ninja" colour="purple" list = "'a', 'b', 'c', 'd', 'e'" />
 
         <img src={logo} className="App-logo" alt="logo" />
         <p>
