@@ -41,7 +41,8 @@ function App() {
         {/* <Person2 test="designer" type="arty"/> */}
         {/* <Person2 test="programmer"/> */}
       
-        <Person2 test="ninja" colour="purple" list = "'a', 'b', 'c', 'd', 'e'" />
+        <Person2 test="ninja" colour="purple" list = "a, b, c, d, e" />
+        {/* <Person2 test="ninja" colour="purple" list = "b" /> */}
 
         <img src={logo} className="App-logo" alt="logo" />
         <p>
