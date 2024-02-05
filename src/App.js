@@ -6,6 +6,14 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+
+        {<h1>[1,2,3]</h1>}  
+
+        <ol>
+          {['a', 'b', 'c'].map(item=><li>{item}</li>)} 
+          {/* We can encapsulate contents in order to hide it */}
+        </ol>
+        
         {/* <Person2 test/> */}
 
         {/* <Person2 test="XYZ"/>    */}
