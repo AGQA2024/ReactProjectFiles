@@ -123,7 +123,9 @@ export default function(props){
 
 
     return (
-        <div>
+        // If you change the div element to <form> then when you hit any button it will submit the full form. We can get around this but it isn't helpful for single page sites.
+        // You could write <form onSubmit={e=>e.preventDefault()}> in order to prevent the form from submitting?
+        <div> 
             
             {props.test ? item(): ''}
             {props.test == "XYZ" ? item2(): ''}
@@ -135,7 +137,11 @@ export default function(props){
             {/* You can use this to display further questions if a user selects a particular dropdown choice */}
 
             <h1>Person Details ({counter}): {title}</h1>
-            <button onClick={e=>setCounter(counter++)}>Click Me!</button>
+            {/* <button onClick={e=>setCounter(counter++)}>Click Me!</button> */}
+
+            <button onClick={e=>{
+                e.preventDefault(); // This would stop the form submitting.
+                setCounter(counter++)}}>Click Me!</button>
             
             <h3>Name:{inputs.name}</h3>
             <h3>Age:{inputs.age}</h3>
