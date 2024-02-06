@@ -2,8 +2,10 @@ import logo from './logo.svg';
 import './App.css';
 import Person2 from './Person2.js';
 import Page from './Page.js';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Link, Outlet } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
+import Nav from './Layout.js';
+import Layout from './Layout.js';
 
 // function list(data){
 //   return data.map(item=>{
@@ -21,14 +23,17 @@ function App() {
       <BrowserRouter>
         {/* We'll register different display components here: */}
         <Routes>
-          <Route path="/" element={<h1>Hello: Page 1</h1>}/>
+          <Route path="/" element={< Layout/>}/>
+
+          {/* <Route path="/" element={<h1>Hello: Page 1</h1>}/> */}
+
           <Route path="/a" element={<h1>Bonjour: Page 2</h1>}/>
           <Route path="/b" element={<h1>Ciao: Page 3</h1>}/>
           <Route path="/c" element={<h1>Yee Haw!: Page 4</h1>}/>
           <Route path="/c/c" element={<div><h1>Secret Meowdy.....</h1><img src="https://images7.memedroid.com/images/UPLOADED676/6260738a79367.jpeg"></img></div>}/>
           <Route path="/d" element={<div><Person2 test="ninja" colour="blue" list = "a, b, c, d, e" /></div>}/>
 
-          <Route path="/e">
+          <Route path="/e" element={<nav><Link to="/a?name=Dave">a</Link><Outlet/></nav>}>
             <Route index element={<h1>Bonjour: Page 2</h1>}/>
             <Route path="e" element={<h2>Oui oui!: Page 2.2</h2>}/> 
           </Route>
