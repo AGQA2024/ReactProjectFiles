@@ -140,10 +140,26 @@ export default function(props){
             });
     });
 
+
+    let [formData, setFormData] = useState({});
+
     return (
+
         // If you change the div element to <form> then when you hit any button it will submit the full form. We can get around this but it isn't helpful for single page sites.
         // You could write <form onSubmit={e=>e.preventDefault()}> in order to prevent the form from submitting?
         <div> 
+
+            <form onSubmit={e=>e.preventDefault()}>
+                <input onChange={e=>setFormData({...formData, test:e.target.value})}/>
+                <input onChange={e=>setFormData({...formData, another:e.target.value})}/>
+
+                <button onClick={()=>{console.log(formData)}}></button>
+            </form>
+
+            <hr/>
+
+            {formData.test}
+
             
             {props.test ? item(): ''}
             {props.test == "XYZ" ? item2(): ''}
