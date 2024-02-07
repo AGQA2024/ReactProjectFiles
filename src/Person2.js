@@ -1,5 +1,5 @@
 // import React, { useState } from 'react';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 
 // let inputs, setInputs;
@@ -121,6 +121,24 @@ export default function(props){
     // e=>{setInputs({...inputs,name:e.target.value});}
     };
 
+    let [newTest,setNewTest] = useState(100);
+    let [newTest_two, setNewTest_two] = useState("a");
+    let [newTest_three, setNewTest_three] = useState("b");
+
+    useEffect(()=>{
+        setNewTest(newTest + 1);
+        console.log("Hello");
+        
+    }, [newTest_two, newTest_three]); 
+    // If you include no dependencies it will run only once following the feature's render, if you include one dependency it will call the function and then update the value everytime it registers an input and not the other, if you include all then it will update everytime. 
+
+    useEffect(()=>{
+        fetch('https://dummyjson.com/users/1')
+            .then(result=>result.json())
+            .then(data=>{
+                console.log(data);
+            });
+    });
 
     return (
         // If you change the div element to <form> then when you hit any button it will submit the full form. We can get around this but it isn't helpful for single page sites.
@@ -138,6 +156,10 @@ export default function(props){
 
             <h1>Person Details ({counter}): {title}</h1>
             {/* <button onClick={e=>setCounter(counter++)}>Click Me!</button> */}
+
+            <h2>New Test {newTest}</h2>
+            <input onInput={e=> setNewTest_two(e.target.value)}/>
+            <input onInput={e=> setNewTest_three(e.target.value)}/>
 
             <button onClick={e=>{
                 e.preventDefault(); // This would stop the form submitting.

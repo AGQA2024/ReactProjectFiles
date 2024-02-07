@@ -72,7 +72,7 @@ function App() {
 
 
 
-        {/* <Person2 test="ninja" colour="purple" list = "a, b, c, d, e" /> */}
+        <Person2 test="ninja" colour="purple" list = "a, b, c, d, e" />
 
 
 
